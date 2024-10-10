@@ -28,7 +28,7 @@ form.addEventListener('submit', (event) => {
   // Username validation
 
   if (username.value.trim() === "") {
-    nameError.textContent = 'Username is required*';
+    nameError.textContent = 'Username is not required*';
     nameError.style.color = "red";
     nameError.style.fontSize = "12px";
     valid = false;
@@ -39,7 +39,7 @@ form.addEventListener('submit', (event) => {
   // Email validation
 
   if (email.value.trim() === "") {
-    emailError.textContent = 'Email is required*';
+    emailError.textContent = 'Email is not required*';
     emailError.style.color = "red";
     emailError.style.fontSize = "12px";
     valid = false;
@@ -50,7 +50,7 @@ form.addEventListener('submit', (event) => {
   // Mobile number validation
 
   if (mobileNumber.value.trim() === "") {
-    numberError.textContent = 'Mobile Number is required*';
+    numberError.textContent = 'Mobile Number is not required*';
     numberError.style.color = "red";
     numberError.style.fontSize = "12px";
     valid = false;
@@ -61,7 +61,7 @@ form.addEventListener('submit', (event) => {
   // Date of birth validation
 
   if (date.value.trim() === "") {
-    dateError.textContent = 'Date is required*';
+    dateError.textContent = 'Date is not required*';
     dateError.style.color = "red";
     dateError.style.fontSize = "12px";
     valid = false;
@@ -79,7 +79,7 @@ form.addEventListener('submit', (event) => {
   } else if (genderOthers.checked) {
     selectedGender = genderOthers.value;
   } else {
-    genderError.textContent = 'Gender is required*';
+    genderError.textContent = 'Gender is not required*';
     genderError.style.color = "red";
     genderError.style.fontSize = "12px";
     valid = false;
@@ -112,7 +112,9 @@ form.addEventListener('submit', (event) => {
       updateLocalStorage();
       editingRow = null;
     } else {
+
       // Add new row
+
       let tableBody = document.getElementById('table-body');
       let row = `
         <tr>
@@ -167,6 +169,7 @@ document.getElementById('table-body').addEventListener('click', function (event)
   }
 });
 
+
 // Save table data to local storage
 
 
@@ -197,7 +200,7 @@ function loadTableData() {
   if (storedData) {
     const tableData = JSON.parse(storedData);
     const tableBody = document.getElementById('table-body');
-    tableBody.innerHTML = ''; // Clear any existing rows
+    tableBody.innerHTML = ''; 
 
     tableData.forEach((rowData) => {
       let row = `
@@ -217,3 +220,8 @@ function loadTableData() {
     });
   }
 }
+
+
+
+
+
