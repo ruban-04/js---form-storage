@@ -1,6 +1,7 @@
-let editingRow = null;
+
 
 const form = document.getElementById('form');
+const submitButton = document.querySelector('.submit');
 
 document.addEventListener('DOMContentLoaded', () => {
   loadTableData(); 
@@ -70,7 +71,7 @@ form.addEventListener('submit', (event) => {
   }
 
   // Gender validation
-  
+
   let selectedGender = '';
   if (genderMale.checked) {
     selectedGender = genderMale.value;
@@ -99,9 +100,7 @@ form.addEventListener('submit', (event) => {
 
     if (editingRow) {
 
-        
       // Update existing row
-
 
       editingRow.cells[0].innerHTML = rowData.username;
       editingRow.cells[1].innerHTML = rowData.email;
@@ -111,9 +110,11 @@ form.addEventListener('submit', (event) => {
 
       updateLocalStorage();
       editingRow = null;
-    } else {
 
-      // Add new row
+      // Reset the button text back to "Submit"
+
+      submitButton.textContent = "Submit";
+    } else {
 
       let tableBody = document.getElementById('table-body');
       let row = `
@@ -134,11 +135,11 @@ form.addEventListener('submit', (event) => {
     }
 
     form.reset(); 
-    
   }
 });
 
 // Edit Button
+
 
 document.getElementById('table-body').addEventListener('click', function (event) {
   if (event.target.classList.contains('edit-btn')) {
@@ -157,10 +158,13 @@ document.getElementById('table-body').addEventListener('click', function (event)
     }
 
     editingRow = row;
+
+    // Change the button text to "Update"
+
+    submitButton.textContent = "Update";
   }
 
   // Delete Button
-
 
   if (event.target.classList.contains('delete-btn')) {
     const row = event.target.closest('tr');
@@ -169,9 +173,7 @@ document.getElementById('table-body').addEventListener('click', function (event)
   }
 });
 
-
 // Save table data to local storage
-
 
 function updateLocalStorage() {
   const tableBody = document.getElementById('table-body');
@@ -205,7 +207,6 @@ function loadTableData() {
     tableData.forEach((rowData) => {
       let row = `
         <tr>
-        
           <td>${rowData.username}</td>
           <td>${rowData.email}</td>
           <td>${rowData.mobileNumber}</td>
@@ -220,8 +221,3 @@ function loadTableData() {
     });
   }
 }
-
-
-
-
-
